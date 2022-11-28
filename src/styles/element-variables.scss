@@ -1,0 +1,25 @@
+/* Element Variables */
+
+// 这些变量覆盖 Element UI variables，但是 src/config/settings.ts 的 theme 等价于 $--color-primary 且优先级更高
+$--color-primary: #168BF7;
+$--color-success: #13CE66;
+$--color-warning: #FFBA00;
+$--color-danger: #FF4949;
+$--color-info: #5D5D5D;
+$--button-font-weight: 400;
+$--color-text-regular: #1F2D3D;
+$--border-color-light: #DFE4ED;
+$--border-color-lighter: #E6EBF5;
+$--table-border: 1px solid #DfE6EC;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+// Apply overrided variables in Element UI
+@import "~element-ui/packages/theme-chalk/src/index";
+
+// The :export directive is the magic sauce for webpack
+// https://mattferderer.com/use-sass-variables-in-typescript-and-javascript
+:export {
+  theme: $--color-primary;
+}

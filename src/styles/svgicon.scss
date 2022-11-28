@@ -1,0 +1,55 @@
+/* Recommended css code for vue-svgicon */
+.svg-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  fill: none;
+  stroke: currentColor;
+  vertical-align: -0.15em;
+}
+
+.layout-svg-container {
+  .svg-icon {
+    color: #5a5e67;
+    &:hover {
+      color: var(--theme-color);
+    }
+  }
+  & > *:hover {
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .layout-svg-btn {
+    .el-button {
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.svg-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.svg-up {
+  transform: rotate(0deg);
+}
+
+.svg-right {
+  transform: rotate(90deg);
+}
+
+.svg-down {
+  transform: rotate(180deg);
+}
+
+.svg-left {
+  transform: rotate(-90deg);
+}
