@@ -18,7 +18,7 @@
       :with-header="false"
     >
       <div class="drawer-theme-container drawer-checkbox-container">
-        <div class="drawer-item-title">{{ $t("_settings.themeTitle") }}</div>
+        <div class="drawer-item-title">Theme Style Settings</div>
 
         <div class="drawer-theme-checkbox drawer-checkbox">
           <div class="drawer-theme-checkbox-item drawer-checkbox-item" @click="handleSideMenuTheme('light')">
@@ -37,7 +37,7 @@
         </div>
 
         <div class="drawer-item">
-          <span>{{ $t("_settings.theme") }}</span>
+          <span>Theme</span>
           <theme-picker style="float: right; height: 26px; margin: -3px 8px 0 0" @change="themeChange" />
         </div>
       </div>
@@ -45,7 +45,7 @@
       <el-divider />
 
       <div class="drawer-layout-container drawer-checkbox-container">
-        <div class="drawer-item-title">{{ $t("_settings.layoutTitle") }}</div>
+        <div class="drawer-item-title">Layout Style Settings</div>
 
         <div class="drawer-layout-checkbox drawer-checkbox">
           <div class="drawer-layout-checkbox-item drawer-checkbox-item" @click="handleLayoutMode(0)">
@@ -67,25 +67,25 @@
       <el-divider />
 
       <div class="layout-components-container">
-        <div class="drawer-item-title">{{ $t("_settings.layoutComponents") }}</div>
+        <div class="drawer-item-title">Layout Components Configuration</div>
 
         <div class="drawer-item">
-          <span>{{ $t("_settings.showBreadcrumb") }}</span>
+          <span>Show Breadcrumb</span>
           <el-switch v-model="showBreadcrumb" class="drawer-switch" />
         </div>
 
         <div class="drawer-item">
-          <span>{{ $t("_settings.showTagsNav") }}</span>
+          <span>Show TagsNav</span>
           <el-switch v-model="showTagsNav" class="drawer-switch" />
         </div>
 
         <div class="drawer-item">
-          <span>{{ $t("_settings.recordTagsNav") }}</span>
+          <span>Cache Tabs Access</span>
           <el-switch v-model="recordTagsNav" class="drawer-switch" />
         </div>
 
         <div class="drawer-item">
-          <span>{{ $t("_settings.showLayoutLogo") }}</span>
+          <span>Show The Side Menu Logo</span>
           <el-switch v-model="showLayoutLogo" class="drawer-switch" />
         </div>
       </div>
@@ -93,7 +93,7 @@
       <el-divider />
 
       <div class="title-mode-container">
-        <div class="drawer-item-title">{{ $t("_settings.titleMode") }}</div>
+        <div class="drawer-item-title">Browser Title Configuration</div>
 
         <div class="drawer-item">
           <el-select v-model="titleMode" placeholder="请选择标题模式" size="mini">
@@ -110,9 +110,7 @@
 
       <el-divider />
 
-      <el-button size="small" plain icon="el-icon-refresh" @click="resetSettings">
-        {{ $t("_settings.resetSettingsTitle") }}
-      </el-button>
+      <el-button size="small" plain icon="el-icon-refresh" @click="resetSettings">Reset Settings</el-button>
     </el-drawer>
   </div>
 </template>
@@ -137,19 +135,19 @@ export default class GlobalSettings extends Vue {
     return [
       {
         value: "0",
-        label: this.$t("_settings.titleModeOne"),
+        label: "Project Title + Page Title",
       },
       {
         value: "1",
-        label: this.$t("_settings.titleModeTwo"),
+        label: "User Name + Page Title",
       },
       {
         value: "2",
-        label: this.$t("_settings.titleModeThree"),
+        label: "Project Title",
       },
       {
         value: "3",
-        label: this.$t("_settings.titleModeFour"),
+        label: "Page Title",
       },
     ];
   }
@@ -230,10 +228,8 @@ export default class GlobalSettings extends Vue {
   }
   // 重置配置回调
   public resetSettings() {
-    let message = this.$t("_settings.resetSettings");
-    message = message === "_settings.resetSettings" ? "正在清除设置缓存并刷新，请稍候..." : message;
     this.$message({
-      message: message as string,
+      message: "Clearing Settings Cache And Refreshing",
       duration: 1000,
       iconClass: "el-icon-loading",
     });

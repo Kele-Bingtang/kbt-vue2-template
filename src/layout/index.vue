@@ -23,7 +23,6 @@
                 <error-log :error-count="errorCount" v-if="settings.errorLog.showInHeader" />
               </template>
               <size-select :size="size" @on-change="handleSetSize" />
-              <lang-select :language="language" @on-change="handleSetLanguage" />
               <user style="margin-right: 33px" />
             </header-bar>
           </el-header>
@@ -53,7 +52,6 @@
               <error-log :error-count="errorCount" v-if="settings.errorLog.showInHeader" />
             </template>
             <size-select :size="size" @on-change="handleSetSize" />
-            <lang-select :language="language" @on-change="handleSetLanguage" />
             <user style="margin-right: 33px" />
           </header-bar>
         </el-header>
@@ -80,13 +78,12 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { HeaderBar, SideMenu, TagsNav, MainContent } from "./components";
-import { refreshPage, setTitle } from "@/utils/layout";
+import { refreshPage } from "@/utils/layout";
 import { DeviceType, LayoutModule } from "@/store/modules/layout";
 import { SettingsModule } from "@/store/modules/settings";
 import LayoutLogo from "./components/Logo/index.vue";
 import FullScreen from "./components/HeaderBar/components/FullScreen.vue";
 import SizeSelect from "./components/HeaderBar/components/SizeSelect.vue";
-import LangSelect from "./components/HeaderBar/components/LangSelect.vue";
 import User from "./components/HeaderBar/components/User.vue";
 import ErrorLog from "./components/HeaderBar/components/ErrorLog.vue";
 import ThemePicker from "@/components/ThemePicker/index.vue";
@@ -101,7 +98,6 @@ import settings from "@/config/settings";
     LayoutLogo,
     FullScreen,
     SizeSelect,
-    LangSelect,
     User,
     ErrorLog,
     ThemePicker,
@@ -134,10 +130,6 @@ export default class Layout extends Vue {
   // 是否显示侧边菜单栏的 Logo
   get showLayoutLogo() {
     return SettingsModule.showLayoutLogo;
-  }
-  // 获取当前语言
-  get language() {
-    return LayoutModule.language;
   }
   // 获取当前 Element UI 的 size
   get size() {
@@ -196,27 +188,12 @@ export default class Layout extends Vue {
   public handleClickOutSide() {
     LayoutModule.closeSideMenu();
   }
-  // 选择语言回调
-  public handleSetLanguage(lang: string) {
-    this.$i18n.locale = lang;
-    LayoutModule.setLanguage(lang);
-    document.documentElement.lang = lang;
-    setTitle(this.$route, this);
-    let message = this.$t("_headerBar.changeLanguage");
-    message = message === "_headerBar.changeLanguage" ? "修改语言成功！" : message;
-    this.$message({
-      message: message as string,
-      type: "success",
-    });
-  }
   // 选择 Element UI 的 size 回调
   public handleSetSize(size: string) {
     (this as any).$ELEMENT.size = size;
     LayoutModule.setSize(size);
-    let message = this.$t("_headerBar.changeSize");
-    message = message === "_headerBar.changeSize" ? "修改尺寸成功！" : message;
     this.$message({
-      message: message as string,
+      message: "Successfully modified the global size！",
       type: "success",
     });
     refreshPage(this, "reload");

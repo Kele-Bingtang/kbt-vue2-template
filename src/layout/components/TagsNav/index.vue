@@ -35,10 +35,10 @@
       </el-button>
     </div>
     <ul v-show="rightMenuVisible" :style="{ left: rightMenuLeft + 'px', top: rightMenuTop + 'px' }" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)">{{ $t("_tagsNav.refresh") }}</li>
-      <li v-if="!isFixedInNav(selectedTag)" @click="handleCloseTag(selectedTag)">{{ $t("_tagsNav.close") }}</li>
-      <li @click="closeOthersTabs">{{ $t("_tagsNav.closeOthers") }}</li>
-      <li @click="closeAllTabs(selectedTag)">{{ $t("_tagsNav.closeAll") }}</li>
+      <li @click="refreshSelectedTag(selectedTag)">Refresh Page</li>
+      <li v-if="!isFixedInNav(selectedTag)" @click="handleCloseTag(selectedTag)">Close Current</li>
+      <li @click="closeOthersTabs">Close Others</li>
+      <li @click="closeAllTabs(selectedTag)">Close All</li>
     </ul>
   </div>
 </template>

@@ -12,14 +12,10 @@
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
         <el-dropdown-item @click.prevent.native="openSettingsDrawer" icon="el-icon-setting" v-if="showSettings">
-          <span>
-            {{ settingsLabel }}
-          </span>
+          <span>My Settings</span>
         </el-dropdown-item>
         <el-dropdown-item divided @click.prevent.native="logout" icon="el-icon-back">
-          <span>
-            {{ logOutLabel }}
-          </span>
+          <span>Log Out</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -44,16 +40,6 @@ export default class User extends Vue {
 
   get showSettings() {
     return SettingsModule.showSettings;
-  }
-
-  get settingsLabel() {
-    let settings = this.$t("_headerBar.settings");
-    return settings === "_headerBar.settings" ? "我的设置" : settings;
-  }
-
-  get logOutLabel() {
-    let logOut = this.$t("_headerBar.logOut");
-    return logOut === "_headerBar.logOut" ? "退出登录" : logOut;
   }
 
   public openSettingsDrawer() {

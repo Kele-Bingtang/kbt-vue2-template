@@ -10,7 +10,6 @@ import {
   setCacheTagNavList,
   getCacheTagNavList,
 } from "@/utils/cache";
-import { getLocale } from "@/locale";
 import { UserModule } from "./user";
 import { SettingsModule } from "./settings";
 
@@ -57,7 +56,6 @@ export interface LayoutState {
   sideMenu: SideMenu; // 侧边菜单
   tagsNav: tagsNav; // 标签页
   size: string; // 布局大小
-  language: string; // 语言
   errorLogs: Array<ErrorLog>; // 错误日志
 }
 
@@ -72,7 +70,6 @@ class Layout extends VuexModule implements LayoutState {
   };
   public device = DeviceType.Desktop;
   public size: string = getCacheSize() || "medium";
-  public language = getLocale() || "zh-CN";
   public errorLogs: Array<ErrorLog> = [];
 
   @Action
@@ -93,11 +90,6 @@ class Layout extends VuexModule implements LayoutState {
   @Action
   public setSize(size: string) {
     this.SET_SIZE(size);
-  }
-
-  @Action
-  public setLanguage(language: string) {
-    this.SET_LANGUAGE(language);
   }
 
   @Action
@@ -225,12 +217,6 @@ class Layout extends VuexModule implements LayoutState {
       errorLog.hasRead = status;
       return errorLog;
     });
-  }
-
-  @Mutation
-  private SET_LANGUAGE(language: string) {
-    this.language = language;
-    setCacheLanguage(this.language);
   }
 
   @Mutation
