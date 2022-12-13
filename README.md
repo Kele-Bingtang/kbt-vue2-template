@@ -2,6 +2,11 @@
 
 基于 Vue + TypeScript 搭建的后台系统模板。
 
+这是纯净版，只有项目框架必要的信息。
+
+- master 分支支持 i18n：国际化、多语言字段
+- no-i18n 分支不支持 i18n：国际化、多语言字段
+
 ## Demo
 
 [Demo](https://admin.youngkbt.cn/)
