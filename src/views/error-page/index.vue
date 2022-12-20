@@ -2,12 +2,10 @@
   <div class="error-logger">
     <el-alert
       title="注意：页面错误日志不会在浏览器持久化存储，刷新页面即会丢失"
-      description="如果你在本页面添加错误日志，那么右上角的红色文字不会变成 0，您需要离开该页面，再重新进入，才会将红色数字置为 0，代表已读"
       type="info"
       :closable="false"
       style="margin-bottom: 10px"
     ></el-alert>
-    <el-button type="primary" @click="addErrorLog">添加一条错误日志</el-button>
     <el-popconfirm placement="right" title="您确定删除全部日志吗？" @confirm="clearAll">
       <el-button
         type="danger"
@@ -112,40 +110,7 @@ export default class ErrorLogger extends Vue {
 
     return Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
   }
-  // 模拟添加一条错误信息
-  public addErrorLog() {
-    let letters = [
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z",
-    ];
-    let letter = letters[Math.floor(Math.random() * letters.length)];
-    let errorMessage = letter + " is not undefined";
-    (this as any).$throw(new Error(errorMessage), this, "v-on handler");
-  }
+  
   // 完全清除错误日志
   public clearAll() {
     LayoutModule.clearErrorLog();
