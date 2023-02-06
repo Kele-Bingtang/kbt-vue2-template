@@ -70,8 +70,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { ErrorLog, LayoutModule } from "@/store/modules/layout";
 
-@Component({})
-export default class ErrorLogger extends Vue {
+@Component({ name: "ErrorLogger" })
+export default class extends Vue {
   public row!: ErrorLog;
 
   public dialogErrorInfoVisible = false;
@@ -110,7 +110,7 @@ export default class ErrorLogger extends Vue {
 
     return Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
   }
-  
+
   // 完全清除错误日志
   public clearAll() {
     LayoutModule.clearErrorLog();

@@ -11,6 +11,18 @@
         <i class="el-icon-caret-bottom" />
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <router-link to="/profile">
+          <el-dropdown-item icon="el-icon-user">
+            {{ profileLabel }}
+          </el-dropdown-item>
+        </router-link>
+        <router-link to="/message">
+          <el-badge :is-dot="messageCount > 0" class="message-badge">
+            <el-dropdown-item icon="el-icon-bell">
+              {{ messageCenterLabel }}
+            </el-dropdown-item>
+          </el-badge>
+        </router-link>
         <el-dropdown-item @click.prevent.native="openSettingsDrawer" icon="el-icon-setting" v-if="showSettings">
           <span>
             {{ settingsLabel }}
@@ -29,21 +41,30 @@
 </template>
 
 <script lang="ts">
+import { MessageModule } from "@/store/modules/message";
 import { SettingsModule } from "@/store/modules/settings";
 import { UserModule } from "@/store/modules/user";
 import { Component, Vue } from "vue-property-decorator";
 import GlobalSettings from "./GlobalSettings.vue";
 
-@Component({
-  components: { GlobalSettings },
-})
-export default class User extends Vue {
+@Component({ name: "User", components: { GlobalSettings } })
+export default class extends Vue {
   get user() {
     return UserModule.userInfo;
   }
 
   get showSettings() {
     return SettingsModule.showSettings;
+  }
+
+  get profileLabel() {
+    let profile = this.$t("_headerBar.profile");
+    return profile === "_headerBar.profile" ? "我的主页" : profile;
+  }
+
+  get messageCenterLabel() {
+    let messageCenter = this.$t("_headerBar.messageCenter");
+    return messageCenter === "_headerBar.messageCenter" ? "我的消息" : messageCenter;
   }
 
   get settingsLabel() {
@@ -54,6 +75,11 @@ export default class User extends Vue {
   get logOutLabel() {
     let logOut = this.$t("_headerBar.logOut");
     return logOut === "_headerBar.logOut" ? "退出登录" : logOut;
+  }
+
+  get messageCount() {
+    // TODO：unreadList 是空的，因为没有请求数据，只有打开我的消息才会请求数据，这里应该请求 API 未读消息的数量
+    return MessageModule.message.unreadList.length;
   }
 
   public openSettingsDrawer() {

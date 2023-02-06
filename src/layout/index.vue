@@ -93,6 +93,7 @@ import ThemePicker from "@/components/ThemePicker/index.vue";
 import settings from "@/config/settings";
 
 @Component({
+  name: "Layout",
   components: {
     HeaderBar,
     TagsNav,
@@ -107,7 +108,7 @@ import settings from "@/config/settings";
     ThemePicker,
   },
 })
-export default class Layout extends Vue {
+export default class extends Vue {
   // 如果是 get 获取，那么一旦 SettingsModule.layoutMode 改变，布局也会改变，此时发生布局紊乱，所以不需要 get 获取，而是利用刷新解决布局问题
   public layoutMode = SettingsModule.layoutMode;
 
@@ -265,7 +266,7 @@ export default class Layout extends Vue {
     .side-menu-container {
       height: 100%;
       transition: width 0.28s;
-      z-index: 2000;
+      z-index: 1000;
       box-shadow: 0 1px 4px rgb(0 21 41 / 9%);
     }
     &.side-menu-expand .side-menu-container {

@@ -32,10 +32,8 @@ export type MenuRoute = RouteConfig & {
   };
 };
 
-@Component({
-  components: { SideMenuItem },
-})
-export default class SideMenu extends Vue {
+@Component({ name: "SideMenu", components: { SideMenuItem } })
+export default class extends Vue {
   // 当前菜单是否折叠
   get isCollapse() {
     return LayoutModule.sideMenu.isCollapse;
@@ -93,7 +91,9 @@ export default class SideMenu extends Vue {
     };
   }
 
-  // 通过路由表获取菜单列表
+  /**
+   * 通过路由表获取菜单列表，筛选出只有 alwaysShowRoot 为 false，hideInMenu 为 false 的菜单列表
+   */
   public getMenuListByRouter(allRolesRoutes: Array<RouteConfig>) {
     let menusList: Array<MenuRoute> = [];
     allRolesRoutes.forEach(route => {
