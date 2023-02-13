@@ -1,4 +1,4 @@
-# kbt-vue-admin-template
+# kbt-vue2-admin-template
 
 基于 Vue + TypeScript 搭建的后台系统模板。
 
