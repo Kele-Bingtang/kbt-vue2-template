@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-GITHUB_REPO=git@github.com:Kele-Bingtang/kbt-vue-admin-template.git
+GITHUB_REPO=git@github.com:Kele-Bingtang/kbt-vue2-admin-template.git
 
 comment=$1
 
